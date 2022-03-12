@@ -1,3 +1,14 @@
-body {
-	background-color: black;
+.card {
+	cursor: pointer;
+	width: 100px;
+	height: 150px;
+	border: none;
+	background-color: white;
+	outline: 3px solid black;
+	transform: scale(1);
+}
+
+.card:hover {
+	transform: scale(0.97);
+	transition: trasnform .3s;
 }
