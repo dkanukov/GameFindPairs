@@ -1,14 +1,38 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.game {
+	margin: auto;
+	margin-top: 100px;
+	width: 820px;
+	height: 520px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+
 .card {
-	cursor: pointer;
-	width: 100px;
-	height: 150px;
-	border: none;
-	background-color: white;
-	outline: 3px solid black;
-	transform: scale(1);
+	position: relative;
+	width: 200px;
+  	height: 125px;
+	background-color: blue;
 }
 
 .card:hover {
-	transform: scale(0.97);
-	transition: trasnform .3s;
+	transform: scale(0.95);
+	transition: 1ms;
+}
+
+.flipped {
+	background-color: red;
+}
+
+.front,
+.back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
 }
