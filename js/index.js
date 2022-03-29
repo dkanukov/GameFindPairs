@@ -2,36 +2,42 @@ const cards = document.querySelectorAll('.card');
 let firstFlippedCard;
 let secondFlippedCard;
 let haveFlippedCard = false;
+let tableLock = false;
 
 cards.forEach(element => {
-    element.addEventListener('click', function name() {
-        element.classList.add('flipped');
-
-        if (!haveFlippedCard) {
-            haveFlippedCard = true;
-            firstFlippedCard = element;
-            return;
-        } else {
-            secondFlippedCard = element;
-        }
-
-        haveFlippedCard = false;
-        if (!checkPair(firstFlippedCard, secondFlippedCard)) {
-            setTimeout(removeFlip, 1000, firstFlippedCard, secondFlippedCard)
-        }
-    })
+    element.addEventListener('click', flipCard)
 });
 
-function checkPair(firstCard, secondCard) {
-    if (firstCard.dataset.num === secondCard.dataset.num) {
-        lockPair(firstCard, secondCard);
-        return true;
+function flipCard() {
+    if (tableLock) {
+        return;
     }
-    return false;
+
+    this.classList.add('flipped');
+
+    if (!haveFlippedCard) {
+        haveFlippedCard = true;
+        firstFlippedCard = this;
+        return;
+    } else {
+        secondFlippedCard = this;
+    }
+    tableLock = true;
+    haveFlippedCard = false;
+    if (!(firstFlippedCard.dataset.num === secondFlippedCard.dataset.num)) {
+        setTimeout(removeFlip, 1000, firstFlippedCard, secondFlippedCard)
+    } else {
+        setTimeout(lockMatchedCards, 1000, firstFlippedCard, secondFlippedCard)
+    }
 }
 
 function removeFlip(firstCard, secondCard) {
     firstCard.classList.remove('flipped');
     secondCard.classList.remove('flipped');
-    console.log(firstCard.classList, secondCard.classList)
+    tableLock = false;
+}
+function lockMatchedCards(first, second) {
+    first.removeEventListener('click', flipCard);
+    second.removeEventListener('click', flipCard);
+    tableLock = false;
 }
