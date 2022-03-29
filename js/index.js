@@ -41,3 +41,9 @@ function lockMatchedCards(first, second) {
     second.removeEventListener('click', flipCard);
     tableLock = false;
 }
+
+(function () {
+    cards.forEach(card => {
+        card.style.order = Math.floor(Math.random() * 16).toString()  ;
+    })
+})();
