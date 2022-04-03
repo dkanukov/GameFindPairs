@@ -15,15 +15,24 @@ function flipCard() {
 
     this.classList.add('flipped');
 
+    this.innerText = this.dataset.num;
+
     if (!haveFlippedCard) {
         haveFlippedCard = true;
         firstFlippedCard = this;
         return;
-    } else {
-        secondFlippedCard = this;
     }
+
+
+    secondFlippedCard = this;
+
+    if(secondFlippedCard === firstFlippedCard) {
+        return;
+    }
+
     tableLock = true;
     haveFlippedCard = false;
+
     if (!(firstFlippedCard.dataset.num === secondFlippedCard.dataset.num)) {
         setTimeout(removeFlip, 1000, firstFlippedCard, secondFlippedCard)
     } else {
@@ -34,6 +43,8 @@ function flipCard() {
 function removeFlip(firstCard, secondCard) {
     firstCard.classList.remove('flipped');
     secondCard.classList.remove('flipped');
+    firstCard.innerText = "";
+    secondCard.innerText = "";
     tableLock = false;
 }
 function lockMatchedCards(first, second) {

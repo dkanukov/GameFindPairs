@@ -19,6 +19,10 @@
 	width: 200px;
   	height: 125px;
 	background-color: blue;
+	text-align: center;
+	line-height: 125px;
+	font-weight: bold;
+	font-size: x-large;
 }
 
 .card:hover {
