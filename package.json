@@ -2,7 +2,9 @@
   "private": true,
   "scripts": {
     "lint": "eslint ./",
-    "lint:report": "eslint --format gitlab ./"
+    "lint:report": "eslint --format gitlab ./",
+    "install": "sudo npm install -g browser-sync",
+	  "serve": "browser-sync start --server --files *.html *.js *.css"
   },
   "author": "",
   "license": "ISC",
